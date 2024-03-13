@@ -1,4 +1,4 @@
-import { AiFillDelete  } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import { BsCheckLg } from "react-icons/bs";
 import "./App.css";
 import { useState } from "react";
@@ -49,12 +49,15 @@ function App() {
 
         <div className="todo-list">
           <div className="todo-list-item">
-            <h3>Task1</h3>
-            <p>Description</p>
-          </div>
-          <div>
-            <AiFillDelete className="icon" />
-            <BsCheckLg  className="icon" />
+            <div>
+              <h3>Task1</h3>
+              <p>Description</p>
+            </div>
+
+            <div>
+              <AiFillDelete className="icon" />
+              <BsCheckLg className=" check-icon" />
+            </div>
           </div>
         </div>
       </div>
