@@ -10,14 +10,13 @@ function App() {
   const [newDescription, setNewDescription] = useState("");
 
   const handletodo = () => {
-    let newTodoItem = {
-      title: newTitle,
-      description: newDescription,
-    };
-
-    let updatedTodoArr = [...alltodos];
-    updatedTodoArr.push(newTodoItem);
-    setAllTodos(updatedTodoArr);
+    setAllTodos([
+      ...alltodos,
+      {
+        title: newTitle,
+        description: newDescription,
+      },
+    ]);
   };
   return (
     <div className="App">
@@ -44,7 +43,11 @@ function App() {
             ></input>
           </div>
           <div className="todo-input-item">
-            <button type="button" onClick={handletodo} className="primary-btn">
+            <button
+              type="button"
+              onClick={() => handletodo()}
+              className="primary-btn"
+            >
               Add
             </button>
           </div>
@@ -69,19 +72,21 @@ function App() {
         </div>
 
         <div className="todo-list">
-        {alltodos.map((item,index)=>{
-            <div className="todo-list-item" key={index}>
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
+          {alltodos.map((item, index) => {
+            return (
+              <div className="todo-list-item" key={index}>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
 
-            <div>
-              <AiFillDelete className="icon" />
-              <BsCheckLg className=" check-icon" />
-            </div>
-          </div>
-        })}
+                <div>
+                  <AiFillDelete className="icon" />
+                  <BsCheckLg className=" check-icon" />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
