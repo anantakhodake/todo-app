@@ -5,6 +5,20 @@ import { useState } from "react";
 
 function App() {
   const [isCompleateScreen, setIsCompleateScreen] = useState(false);
+  const [alltodos, setAllTodos] = useState([]);
+  const [newTitle, setNewTitle] = useState("");
+  const [newDescription, setNewDescription] = useState("");
+
+  const handletodo = () => {
+    let newTodoItem = {
+      title: newTitle,
+      description: newDescription,
+    };
+
+    let updatedTodoArr = [...alltodos];
+    updatedTodoArr.push(newTodoItem);
+    setAllTodos(updatedTodoArr);
+  };
   return (
     <div className="App">
       <h1>Todo app</h1>
@@ -13,17 +27,24 @@ function App() {
         <div className="todo-input">
           <div className="todo-input-item">
             <label>Title:</label>
-            <input type="text" placeholder="Enter the title?"></input>
+            <input
+              type="text"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              placeholder="Enter the title?"
+            ></input>
           </div>
           <div className="todo-input-item">
             <label>Description:</label>
             <input
               type="text"
               placeholder="Enter the title description"
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
             ></input>
           </div>
           <div className="todo-input-item">
-            <button type="button" className="primary-btn">
+            <button type="button" onClick={handletodo} className="primary-btn">
               Add
             </button>
           </div>
@@ -48,10 +69,11 @@ function App() {
         </div>
 
         <div className="todo-list">
-          <div className="todo-list-item">
+        {alltodos.map((item,index)=>{
+            <div className="todo-list-item" key={index}>
             <div>
-              <h3>Task1</h3>
-              <p>Description</p>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
             </div>
 
             <div>
@@ -59,6 +81,7 @@ function App() {
               <BsCheckLg className=" check-icon" />
             </div>
           </div>
+        })}
         </div>
       </div>
     </div>
